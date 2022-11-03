@@ -2,8 +2,6 @@ import {
   Box,
   Button,
   Flex,
-  Grid,
-  GridItem,
   Heading,
   Image,
   Stack,
@@ -11,32 +9,15 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 
-import axios from "axios";
-import { useState } from "react";
-import { useScroll } from "../hooks/useScroll";
+import { FC } from "react";
 
-export default function FvHero() {
-  const [apiData, setApiData] = useState<string[]>([]);
-  const [getData, setGetData] = useState<boolean>(false);
+type onClickProps = {
+  FindStore: () => void;
+  isLoading: boolean;
+};
 
-  const [ref, moveTo] = useScroll();
-
-  const FindStore = () => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) => {
-        setApiData(res.data);
-        setGetData(true);
-        moveTo();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-      setTimeout(() => {
-        moveTo();
-      }, 500);
-  };
+export const FvHero: FC<onClickProps> = (props) => {
+  const { FindStore, isLoading } = props;
 
   return (
     <Box>
@@ -82,8 +63,8 @@ export default function FvHero() {
               fontSize={{ base: "md", lg: "lg" }}
               color={{ base: "white", md: "gray.800" }}
             >
-              現在の位置情報から、近くの喫煙可能店を見つけます。
-              「現在地から検索する」から喫煙可能店を探しましょう。
+              現在地から、近くの喫煙可能店を見つけましょう。
+              「現在地から検索する」から喫煙可能店を探せます。
             </Text>
             <Stack direction={{ base: "column", md: "row" }} spacing={4}>
               <Button
@@ -94,6 +75,7 @@ export default function FvHero() {
                   bg: "red.300",
                 }}
                 onClick={FindStore}
+                isLoading={isLoading}
               >
                 現在地から検索する
               </Button>
@@ -118,40 +100,6 @@ export default function FvHero() {
           />
         </Flex>
       </Stack>
-
-      {getData ? (
-        <Grid
-          templateColumns={{
-            base: "repeat(1, 1fr)",
-            md: "repeat(2, 1fr)",
-          }}
-          gap={{ base: 6, md: 9 }}
-          px={{ base: 4, md: 8 }}
-          py={{ base: 20, md: 20 }}
-          ref={ref}
-        >
-          <GridItem colSpan={2} textAlign="center" mb={5}>
-            <Heading fontSize={{ base: "2xl", md: "3xl" }}>検索結果</Heading>
-          </GridItem>
-          {apiData.map((data) => (
-            <GridItem colSpan={{ base: 2, md: 1 }}>
-              <Box w={"full"} bg="white" boxShadow={"2xl"} rounded={"md"} p={6}>
-                <Stack>
-                  <Heading
-                    fontSize={{ base: "md", md: "lg", lg: "xl" }}
-                    fontFamily={"body"}
-                    mb={4}
-                  >
-                    店名
-                  </Heading>
-                  <Text>住所</Text>
-                  <Text>電話番号</Text>
-                </Stack>
-              </Box>
-            </GridItem>
-          ))}
-        </Grid>
-      ) : null }
     </Box>
   );
-}
+};
