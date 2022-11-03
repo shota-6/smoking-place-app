@@ -3,6 +3,7 @@ import { FC } from "react";
 import {
   Box,
   Button,
+  Center,
   Grid,
   GridItem,
   Heading,
@@ -120,6 +121,13 @@ export const ResultCards: FC<resultProps> = (props) => {
             </Box>
           </GridItem>
         ))}
+        <GridItem colSpan={2} textAlign="center" mt={10}>
+        【画像提供：ホットペッパー グルメ】<br />
+          Powered by{" "}
+          <a href="http://webservice.recruit.co.jp/">
+            ホットペッパー Webサービス
+          </a>
+        </GridItem>
       </Grid>
     );
   } else {

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FvHero } from "./FvHero";
 import { ResultCards } from "./ResultCards";
 import axios from "axios";
@@ -31,7 +31,7 @@ export const Home = () => {
   const KEY = "3f02e0fca4a245b1";
 
   const hotpepper = axios.create({
-    baseURL: "http://webservice.recruit.co.jp/hotpepper/gourmet/v1/",
+    baseURL: "https://find-smoking-place.herokuapp.com/http://webservice.recruit.co.jp/hotpepper/gourmet/v1/",
   });
 
   const FindStore = async () => {
