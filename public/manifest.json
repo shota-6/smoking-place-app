@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "喫煙可能店を探す",
+  "name": "近くの喫煙可能店を探す",
   "icons": [
     {
       "src": "favicon.ico",
