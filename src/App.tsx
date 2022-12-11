@@ -12,6 +12,8 @@ export const App = () => {
     ReactGA.send("pageview");
   }, []);
 
+
+
   return (
     <ChakraProvider theme={theme}>
       <Home />
