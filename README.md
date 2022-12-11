@@ -6,9 +6,8 @@ https://www.find-smoking.space/
 ・React
 ・TypeScript
 ・Chakra Ui
-・Heroku
-・cors-anywhere
 ・ホットペッパーAPI
+・Firebase(Cloud Functions)
 など
 
 
